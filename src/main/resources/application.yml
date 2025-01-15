@@ -10,3 +10,21 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+logging:
+  level:
+    org.springframework.cache: trace # Redis 사용에 대한 로그가 조회되도록 설정
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    url: jdbc:mysql://redis-study-db.ch8mikkgybk7.ap-northeast-2.rds.amazonaws.com:3306/mydb
+    username: admin
+    password: 95206326
