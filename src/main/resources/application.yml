@@ -2,7 +2,8 @@ spring:
   profiles:
     default: local
   datasource:
-    url: jdbc:mysql://localhost:3306/mydb
+#    url: jdbc:mysql://localhost:3306/mydb
+    url: jdbc:mysql://host.docker.internal:3306/mydb # 호스트 컴퓨터의 주소
     username: root
     password: 95206326
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -12,14 +13,15 @@ spring:
     show-sql: true
   data:
     redis:
-      host: localhost
+#      host: localhost
+      host: cache-server # Docoker-compose에서의 이름
       port: 6379
 
 logging:
   level:
     org.springframework.cache: trace # Redis 사용에 대한 로그가 조회되도록 설정
 
----
+--- # 아래 옵션에서 변한값만 위에 덮어써서 추가로 적용시킴
 spring:
   config:
     activate:
@@ -28,3 +30,4 @@ spring:
     url: jdbc:mysql://redis-study-db.ch8mikkgybk7.ap-northeast-2.rds.amazonaws.com:3306/mydb
     username: admin
     password: 95206326
+  # 나머지 jpa, data 옵션은 안 적어도 위에 걸로 적용됨
